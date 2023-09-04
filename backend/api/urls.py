@@ -8,5 +8,6 @@ router = DefaultRouter()
 router.register("contacts", ContactsViewSet)
 
 urlpatterns = [
+    path("auth/", include("djoser.urls.authtoken")),
     path("", include(router.urls)),
 ]

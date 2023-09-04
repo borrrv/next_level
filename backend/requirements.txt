@@ -6,3 +6,4 @@ django-phonenumber-field==7.1.0
 djoser==2.2.0
 phonenumbers==8.13.19
 django-filter
+gunicorn==21.2.0
