@@ -1,6 +1,7 @@
-from pathlib import Path
-from dotenv import load_dotenv
 from os import getenv
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -25,6 +26,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "djoser",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -98,9 +100,15 @@ STATIC_ROOT = Path(BASE_DIR).joinpath("static")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_PAGINATION_CLASS":
+        "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 
 DJOSER = {

@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Contact
 
 
@@ -9,7 +10,6 @@ class ContactAdmin(admin.ModelAdmin):
         "last_name",
         "email",
         "phone_number",
-        "is_active",
     )
     search_fields = (
         "first_name",

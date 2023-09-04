@@ -1,6 +1,7 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+
 from api.managers import CustomUserManager
 
 
@@ -9,14 +10,10 @@ class Contact(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(
         "Имя",
         max_length=50,
-        blank=True,
-        null=True
     )
     last_name = models.CharField(
         "Фамилия",
         max_length=50,
-        blank=True,
-        null=True
     )
     email = models.EmailField(
         "Электронная почта",
@@ -61,6 +58,12 @@ class Contact(AbstractBaseUser, PermissionsMixin):
         ordering = ("id",)
         verbose_name = "Контакт"
         verbose_name_plural = "Контакты"
+        constraints = [
+            models.UniqueConstraint(
+                fields=("email", "phone_number",),
+                name="unique_email_and_phone_number"
+            ),
+        ]
 
     def __str__(self):
         return self.email
