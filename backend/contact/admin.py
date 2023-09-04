@@ -23,5 +23,9 @@ class ContactAdmin(admin.ModelAdmin):
         "email",
     )
 
+    def save_model(self, request, obj, form, change):
+        obj.set_password(obj.password)
+        obj.save()
+
 
 admin.site.register(Contact, ContactAdmin)

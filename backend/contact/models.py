@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
@@ -64,6 +65,9 @@ class Contact(AbstractBaseUser, PermissionsMixin):
                 name="unique_email_and_phone_number"
             ),
         ]
+
+    def set_password(self, raw_password):
+        self.password = make_password(raw_password)
 
     def __str__(self):
         return self.email
