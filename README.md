@@ -72,3 +72,8 @@ api/contacts/
 ```
 api/contacts/1/
 ```
+- (GET) Поиск по имени или фамилии
+```
+api/contacts?first_name=<first_name>
+api/contacts?last_name=<last_name>
+```
